@@ -22,58 +22,24 @@
       align-items: center;
       text-align: center;
     }
-    .glow-text {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #333;
-      text-shadow: 
-        0 0 5px #ff007f, 
-        0 0 10px #ff007f, 
-        0 0 15px #ff007f, 
-        0 0 20px #ff4d94, 
-        0 0 25px #ff4d94, 
-        0 0 30px #ff4d94, 
-        0 0 35px #ff80b3;
-      transition: all 0.3s ease;
-    }
-    .dark-mode .glow-text {
-      color: #fff;
-      text-shadow: 
-        0 0 5px #3fd611, 
-        0 0 10px #69e643, 
-        0 0 15px #69e643, 
-        0 0 20px #69e643, 
-        0 0 25px #69e643, 
-        0 0 30px #69e643, 
-        0 0 35px #b5e495;
-    }
-    .download-url-button {
-      padding: 12px 24px;
-      font-family: "Anek Tamil", sans-serif;
-      font-size: 15px;
-      color: #2d3436;
-      background: linear-gradient(to right, #f60, #fc0);
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
 .squid-text {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #333;
-      text-shadow: 
-        0 0 5px #ff007f, 
-        0 0 10px #ff007f, 
-        0 0 15px #ff007f, 
-        0 0 20px #ff4d94, 
-        0 0 25px #ff4d94, 
-        0 0 30px #ff4d94, 
-        0 0 35px #ff80b3;
-      transition: all 0.3s ease;
-    }
+  margin: 0 auto; 
+  letter-spacing: 0.0015em;
+  font-size: clamp(2em, 5vw, 2em);
+  color: #8D0B41;
+  text-align: center;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+.dark-mode .squid-text {
+    color: #81A263;
+}
+@supports (font-smoothing: antialiased) {
+  .squid-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
 #sun {
   margin: 50px auto;
   width: 150px;
@@ -192,7 +158,7 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-three-fifths">
-            <div class="toggle-container mb-6">
+            <div class="toggle-container mb-2">
               <label class="switch">
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider"></span>
