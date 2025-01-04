@@ -1,0 +1,18 @@
+[package]
+name = "rust-name-wish"
+version = "0.1.0"
+edition = "2021"
+authors = ["Santhosh Veer <hello@mskian.com>"]
+description = "Name Wishing Website Built using Rust."
+repository = "https://github.com/mskian/greeting-wishes"
+homepage = "https://github.com/mskian/greeting-wishes"
+readme = "README.md"
+license = "MIT"
+keywords = ["wishes", "greeting"]
+
+[dependencies]
+actix-files = "0.6.6"
+actix-web = "4.9.0"
+serde = { version = "1.0.217", features = ["derive"] }
+slug = "0.1.6"
+tera = "1.20.0"

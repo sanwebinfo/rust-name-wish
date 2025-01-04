@@ -1,0 +1,190 @@
+html, body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-family: "Geist Mono", serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+body {
+	background-color: #dff0fa;
+	color: #121212;
+  font-family: 16px;
+	padding-bottom: 20px;
+}
+.title {
+    font-family: "Geist Mono", serif;
+    text-align: center;
+    font-weight: 600;
+  }
+  .input {
+    font-family: "Geist Mono", serif;
+    font-weight: 500;
+    
+  }
+  textarea {
+    font-family: "Geist Mono", serif;
+    font-weight: 500;
+  }
+  .button {
+    font-family: "Geist Mono", serif;
+    margin-top: 10px;
+    font-weight: 600;
+    cursor:pointer;
+    text-transform:uppercase;
+  }
+pre {
+	background-color: #1e0922;
+	font-family: "Geist Mono", serif;
+	color: #7bed9f;
+	padding: 15px;
+	border-radius: 5px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+  word-wrap: break-word;
+}
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f44336;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+body.dark-mode {
+	background-color: #221d1d;
+	color: #121212;
+	padding-bottom: 20px;
+}
+.dark-mode pre {
+  background-color: #291010;
+  color: #7bed9f;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.text-all {
+    font-family: "Geist Mono", serif;
+    font-weight: 600;
+	color: #222523;
+}
+.dark-mode .text-all {
+    font-family: "Geist Mono", serif;
+	color: #b4ebac;
+}
+p {
+    font-family: "Geist Mono", serif;
+	color: #222523;
+    font-weight: 500;
+}
+.dark-mode p {
+    font-family: "Geist Mono", serif;
+	color: #f0f33e;
+}
+.label {
+    font-family: "Geist Mono", serif;
+	color: #222523;
+  font-weight: 500;
+}
+.dark-mode .label {
+    font-family: "Geist Mono", serif;
+	color: #eee9ab;
+}
+input::-webkit-input-placeholder {
+  color: #1f0505;
+}
+
+input:-moz-placeholder {
+  color: #1f0505;
+}
+
+input::-moz-placeholder {
+  color: #1f0505;
+}
+
+input:-ms-input-placeholder {
+  color: #1f0505;
+}
+.notification {
+    display: none;
+    position: center;
+    background-color: #8d290b;
+    color: rgb(245, 243, 147);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Geist Mono", serif;
+    font-weight: 600;
+    align-items: center;
+    word-wrap: break-word;
+    overflow-x: auto;
+}
+.notification.is-active {
+    display: block;
+}
+.dark-mode .notification {
+  background-color: #b9f843;
+  color: rgb(26, 5, 5);
+}
+.box {
+  position: relative;
+  background: #f7faa7;
+  border: 1px solid #55072b;
+  color: #1a1601;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 30px;
+  padding-top: 68px;
+  padding-bottom: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Geist Mono", serif;
+  letter-spacing: .04em;
+}
+.quote-text {
+  font-size: 16px;
+  font-family: "Geist Mono", serif;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  text-align: left;
+  word-wrap: break-word;
+}
+.dark-mode .box {
+  background-image: linear-gradient(to right top, #32072b, #290924, #21081d, #1a0617, #10030e);
+  border: 1px solid #f5e026;
+}
+.dark-mode .quote-text {
+  color: rgb(255, 255, 255);
+}
