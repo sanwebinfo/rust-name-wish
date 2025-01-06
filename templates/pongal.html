@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+  <link href="static/icon-192.png" rel="icon" sizes="192x192" type="image/png">
+  <link href="static/apple-touch-icon.png" rel="apple-touch-icon">
+  <title>Hi, {{ name }} Here are your Happy Pongal Greetings</title>
+  <meta name="description" content="Hey {{ name }} - Here are your Happy Pongal Greetings and Wishes.">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.2/css/bulma.min.css" integrity="sha512-RpeJZX3aH5oZN3U3JhE7Sd+HG8XQsqmP3clIbu4G28p668yNsRNj3zMASKe1ATjl/W80wuEtCx2dFA8xaebG5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+<style>
+.full-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Geist Mono", serif;
+  word-wrap: break-word;
+}
+.pongal-pot {
+  position: relative;
+  width: 210px;
+  height: 200px;
+  background: #f4c042;
+  border-radius: 50%;
+  border: 5px solid #7a6021;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+}
+.pongal-pot:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 35px;
+  background: #7a6021;
+  border-radius: 15px 15px 0 0;
+}
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+}
+.dots span {
+  width: 15px;
+  height: 15px;
+  background: #40407a;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: dotBounce 1.5s ease-in-out infinite;
+  will-change: transform;
+}
+.dots span:nth-child(2) {
+  background: #218c74;
+}
+.dots span:nth-child(3) {
+  background: #6d214f;
+}
+.milk {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 40px;
+  background: #f8efba;
+  border-radius: 50%;
+  box-shadow: 0 -10px 0 #f8efba;
+}
+.dark-mode .milk {
+  background: #f7f1e3;
+  box-shadow: 0 -10px 0 #f7f1e3;
+}
+.base {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 20px;
+  background: #7a6021;
+  border-radius: 10px;
+}
+.pot-text {
+  position: absolute;
+  padding: 0 10px;
+  max-width: 90%;
+  font-family: "Geist Mono", serif;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #b33771;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+  word-wrap: break-word;
+  animation: textFadeIn 2s ease-in-out forwards infinite;
+  will-change: opacity;
+}
+@keyframes dotBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.squid-text {
+  margin: 10px 0;
+  letter-spacing: 0.0015em;
+  font-size: clamp(2em, 5vw, 2em);
+  color: #8d0b41;
+  text-align: center;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+.dark-mode .squid-text {
+  color: #81a263;
+}
+.label {
+  margin: 10px 0;
+  letter-spacing: 0.0015em;
+  font-size: 15px;
+  color: #8d0b41;
+  text-align: center;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+.dark-mode .label {
+  color: #edf05a;
+}
+@supports (font-smoothing: antialiased) {
+  .squid-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="full-page mt-6">
+    <h1 class="squid-text mb-6">Happy Pongal</h1>
+    <div class="pongal-pot mt-6 mb-6">
+        <div class="milk"></div>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2 class="pot-text">{{ name }}</h2>
+        <div class="base"></div>
+    </div>
+    <div class="toggle-container mb-6 mt-4">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <form action="/pongal" method="get" aria-label="Name Input Form" class="mb-6 mt-2">
+        <label class="label squid-text">Write Name in English<br>(Without Space)</label>
+        <div class="field">
+        <div class="control">
+        <input type="text" id="name" name="name" class="input is-warning" placeholder="Enter Name" required>
+       </div>
+    </div>
+       <div class="control">
+        <button class="button is-info" type="submit">Submit</button>
+       </div>
+    </form>
+  </div>
+<script src="static/theme.js"></script>
+</body>
+</html>

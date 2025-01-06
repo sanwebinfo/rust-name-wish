@@ -71,6 +71,70 @@ async fn greet(query: web::Query<QueryParams>, tmpl: web::Data<Tera>) -> Result<
         .body(rendered))
 }
 
+async fn pongal(query: web::Query<QueryParams>, tmpl: web::Data<Tera>) -> Result<HttpResponse, Error> {
+    let name = query.name.trim().is_empty().then(|| "YourName").unwrap_or(query.name.trim());
+
+    if name.is_empty() {
+        return missing_name_error(tmpl).await;
+    }
+
+    // Data validation
+    if name.is_empty() || name.len() > 36 {
+        let mut ctx = Context::new();
+        ctx.insert("error", "Invalid name provided.");
+        
+        // Render the error page
+        let rendered = tmpl.render("error.html", &ctx)
+            .map_err(|_| actix_web::error::ErrorInternalServerError("Error rendering error page"))?;
+
+        return Ok(HttpResponse::BadRequest()
+            .content_type("text/html")
+            .insert_header(("Strict-Transport-Security", "max-age=31536000; includeSubDomains"))
+            .insert_header(("X-Frame-Options", "DENY"))
+            .insert_header(("X-Content-Type-Options", "nosniff"))
+            .insert_header(("X-XSS-Protection", "1; mode=block"))
+            .insert_header(("X-Robots-Tag", "noindex, nofollow"))
+            .body(rendered));
+    }
+
+    let cleanup_url = name.replace(" ", "");
+    let slugified_name = slugify(cleanup_url);
+
+    if name != slugified_name {
+        return Ok(HttpResponse::Found()
+            .append_header(("Location", format!("/pongal?name={}", slugified_name)))
+            .insert_header(("Strict-Transport-Security", "max-age=31536000; includeSubDomains"))
+            .insert_header(("X-Frame-Options", "DENY"))
+            .insert_header(("X-Content-Type-Options", "nosniff"))
+            .insert_header(("X-XSS-Protection", "1; mode=block"))
+            .insert_header(("X-Robots-Tag", "noindex, nofollow"))
+            .finish());
+    }
+
+    let display_name = name.replace("-", " ");
+    let greeting_name = display_name.replace(" ", "");
+
+    // Prepare context for the template
+    let mut ctx = Context::new();
+    ctx.insert("name", &greeting_name);
+    ctx.insert("name_slug", &slugified_name);
+    let canonical_url = format!("/pongal?name={}", slugified_name);
+    ctx.insert("canonical_url", &canonical_url);
+
+    // Render the template and handle errors
+    let rendered = tmpl.render("pongal.html", &ctx)
+        .map_err(|_| actix_web::error::ErrorInternalServerError("Template rendering failed"))?;
+
+    Ok(HttpResponse::Ok()
+        .content_type("text/html")
+        .insert_header(("Strict-Transport-Security", "max-age=31536000; includeSubDomains"))
+        .insert_header(("X-Frame-Options", "DENY"))
+        .insert_header(("X-Content-Type-Options", "nosniff"))
+        .insert_header(("X-XSS-Protection", "1; mode=block"))
+        .insert_header(("X-Robots-Tag", "noindex, nofollow"))
+        .body(rendered))
+}
+
 async fn home(tmpl: web::Data<Tera>) -> Result<HttpResponse, Error> {
     let mut ctx = Context::new();
     ctx.insert("message", "Greeting Maker 🎉");
@@ -138,6 +202,7 @@ async fn main() -> std::io::Result<()> {
             .service(web::scope("/static").service(Files::new("/", "./static")))
             .route("/", web::get().to(home))
             .route("/wish", web::get().to(greet))
+            .route("/pongal", web::get().to(pongal))
             .route("/404", web::get().to(not_found))
             .route("/error", web::get().to(missing_name_error))
             .default_service(web::route().to(not_found))
